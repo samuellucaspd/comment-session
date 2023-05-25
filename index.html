@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>Comentários</title>
+    <link rel="stylesheet" href="style.css">
+ 
+</head>
+<body>
+    
+    <h1 id="page-title">Sessão de Comentários</h1>
+
+    <div id="comment-session" x-data="{ comments :  getComments()}">
+        <template  x-for="comment in comments">
+            <div class="comment animate__animated animate__backInRight">
+                <div class="comment-content">
+                    <p class="comment-title" x-text="comment.name"></p>
+                    <p class="comment-body" x-text="comment.body"></p>
+                </div>
+                <div class="comment-info">
+                    <div class="pic">
+                        <img :src="`https://robohash.org/${comment.id}`">
+                    </div>
+                    <p class="comment-email" x-text="comment.email"></p>
+     
+                </div>
+            </div>
+        </template>
+    </div>
+        
+
+
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        async function getComments(){
+            let users = await fetch("https://jsonplaceholder.typicode.com/comments")
+
+            return await users.json()
+        }
+
+
+        /*
+            
+        */
+    </script>
+</html>
